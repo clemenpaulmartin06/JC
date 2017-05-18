@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JCModelStoreContainer" CdmEntityContainer="JCEntities">
+    <EntitySetMapping Name="ledgers">
+      <EntityTypeMapping TypeName="JCModel.ledger">
+        <MappingFragment StoreEntitySet="ledger">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="earned" ColumnName="earned" />
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="splashes">
+      <EntityTypeMapping TypeName="JCModel.splash">
+        <MappingFragment StoreEntitySet="splash">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
+          <ScalarProperty Name="message" ColumnName="message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="JCModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

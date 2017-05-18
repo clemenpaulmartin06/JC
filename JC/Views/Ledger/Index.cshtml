@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container"  id="top">
+    <div class="row">
+
+        <div class="panel panel-info">
+
+            <div class="panel-heading">
+                @*<a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>*@
+                <h2>Ledger</h2>
+            </div>
+            <div class="panel-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Date</td>
+                            <td>Description</td>
+                            <td>Earned</td>
+                            <td>Used</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @{ decimal totalEarned = 0; decimal totalUsed = 0; decimal total = 0; }
+
+                        @foreach (view_ledger_Result item in ViewBag.listLedger)
+                        {
+                            totalEarned = Convert.ToDecimal(item.totalEarned);
+                            totalUsed = Convert.ToDecimal(item.totalUsed);
+                            
+                            <tr>
+
+                                <td>@Convert.ToDateTime(item.dDate).ToString("MM/dd/yy")</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "Ledger", new { id = @item.id })">@item.description</a>
+                                </td>
+
+                                <td>@Convert.ToDouble(item.earned).ToString("#,##0.00")</td>
+                                <td>@Convert.ToDouble(item.used).ToString("#,##0.00")</td>
+
+                            </tr>
+                            
+
+                        }
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>@totalEarned.ToString("#,##0.00")</td>
+                            <td>@totalUsed.ToString("#,##0.00")</td>
+                            @{total = totalEarned - totalUsed;}
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+            
+                    <table>
+                        <tr>
+                            <td>Total Earnings : @total.ToString("#,##0.00")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

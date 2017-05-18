@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ledger">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="earned" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="used" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="dDate" Type="datetime" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="splash">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="dDate" Type="datetime" />
+          <Property Name="message" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Function Name="delete_data_ledger" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insert_ledger" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="earned" Type="decimal" Mode="In" />
+          <Parameter Name="used" Type="decimal" Mode="In" />
+          <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="update_data" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="description" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="earned" Type="decimal" Mode="In" />
+          <Parameter Name="used" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="view_data" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="view_ledger" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="JCModelStoreContainer">
+          <EntitySet Name="ledger" EntityType="Self.ledger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="splash" EntityType="Self.splash" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ledger">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="earned" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="used" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="dDate" Type="DateTime" Precision="3" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="splash">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="dDate" Type="DateTime" Precision="3" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="JCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ledgers" EntityType="Self.ledger" />
+          <EntitySet Name="splashes" EntityType="Self.splash" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <FunctionImport Name="delete_data_ledger">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insert_ledger">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="earned" Mode="In" Type="Decimal" />
+            <Parameter Name="used" Mode="In" Type="Decimal" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="view_ledger" ReturnType="Collection(JCModel.view_ledger_Result)">
+          <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="view_data" ReturnType="Collection(JCModel.view_data_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="update_data">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="earned" Mode="In" Type="Decimal" />
+            <Parameter Name="used" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="view_ledger_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="earned" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="used" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="dDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="description" Nullable="true" />
+          <Property Type="Decimal" Name="totalEarned" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="totalUsed" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="view_data_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="earned" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="used" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="dDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="description" Nullable="true" />
+          <Property Type="Decimal" Name="totalEarned" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="totalUsed" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JCModelStoreContainer" CdmEntityContainer="JCEntities">
+          <EntitySetMapping Name="ledgers">
+            <EntityTypeMapping TypeName="JCModel.ledger">
+              <MappingFragment StoreEntitySet="ledger">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="earned" ColumnName="earned" />
+                <ScalarProperty Name="used" ColumnName="used" />
+                <ScalarProperty Name="dDate" ColumnName="dDate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="splashes">
+            <EntityTypeMapping TypeName="JCModel.splash">
+              <MappingFragment StoreEntitySet="splash">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dDate" ColumnName="dDate" />
+                <ScalarProperty Name="message" ColumnName="message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="JCModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="delete_data_ledger" FunctionName="JCModel.Store.delete_data_ledger" />
+          <FunctionImportMapping FunctionImportName="insert_ledger" FunctionName="JCModel.Store.insert_ledger" />
+          <FunctionImportMapping FunctionImportName="view_ledger" FunctionName="JCModel.Store.view_ledger">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JCModel.view_ledger_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="earned" ColumnName="earned" />
+                <ScalarProperty Name="used" ColumnName="used" />
+                <ScalarProperty Name="dDate" ColumnName="dDate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="totalEarned" ColumnName="totalEarned" />
+                <ScalarProperty Name="totalUsed" ColumnName="totalUsed" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="view_data" FunctionName="JCModel.Store.view_data">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JCModel.view_data_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="earned" ColumnName="earned" />
+                <ScalarProperty Name="used" ColumnName="used" />
+                <ScalarProperty Name="dDate" ColumnName="dDate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="totalEarned" ColumnName="totalEarned" />
+                <ScalarProperty Name="totalUsed" ColumnName="totalUsed" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="update_data" FunctionName="JCModel.Store.update_data" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

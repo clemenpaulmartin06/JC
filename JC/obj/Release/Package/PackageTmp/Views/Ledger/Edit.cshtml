@@ -1,0 +1,83 @@
+﻿
+@using JC.Controllers
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+
+
+                <div class="">
+                    <br /><br />
+
+                    <div class="container">
+
+                        @using (Html.BeginForm("Edit", "Ledger", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+
+
+                            foreach (view_data_Result item in ViewBag.listData)
+                            {
+
+                                <label>Description</label>
+                                <input type="text" class="form-control" placeholder="Description" name="description" value="@item.description" required autofocus>
+                                <label>Earned</label>
+                                <input type="text" class="form-control" placeholder="Earned" name="earned" value="@item.earned" required>
+                                <label>Used</label>
+                                <input type="text" class="form-control" placeholder="Used" name="used" value="@item.used" required>
+                                <input type="hidden" name="id" value="@item.id" />
+                            }
+
+
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                Update
+                            </button>
+                            <br />
+                        }
+
+
+                        @using (Html.BeginForm("Delete", "Ledger", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+
+
+                            foreach (view_data_Result item in ViewBag.listData)
+                            {
+                                <input type="hidden" name="id" value="@item.id" />
+                            }
+
+
+
+                            <button class="btn btn-lg btn-danger btn-block" type="submit">
+                                Delete
+                            </button>
+                            <br />
+                        }
+
+                        <a href="@Url.Action("Index", "Ledger")" class="btn btn-lg btn-default btn-block">
+                            Back
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JCModelStoreContainer" CdmEntityContainer="JCEntities">
+    <EntitySetMapping Name="ledgers">
+      <EntityTypeMapping TypeName="JCModel.ledger">
+        <MappingFragment StoreEntitySet="ledger">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="earned" ColumnName="earned" />
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="splashes">
+      <EntityTypeMapping TypeName="JCModel.splash">
+        <MappingFragment StoreEntitySet="splash">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
+          <ScalarProperty Name="message" ColumnName="message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="JCModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="delete_data_ledger" FunctionName="JCModel.Store.delete_data_ledger" />
+    <FunctionImportMapping FunctionImportName="insert_ledger" FunctionName="JCModel.Store.insert_ledger" />
+    <FunctionImportMapping FunctionImportName="view_ledger" FunctionName="JCModel.Store.view_ledger">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JCModel.view_ledger_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="earned" ColumnName="earned" />
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="totalEarned" ColumnName="totalEarned" />
+          <ScalarProperty Name="totalUsed" ColumnName="totalUsed" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="view_data" FunctionName="JCModel.Store.view_data">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="JCModel.view_data_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="earned" ColumnName="earned" />
+          <ScalarProperty Name="used" ColumnName="used" />
+          <ScalarProperty Name="dDate" ColumnName="dDate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="totalEarned" ColumnName="totalEarned" />
+          <ScalarProperty Name="totalUsed" ColumnName="totalUsed" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="update_data" FunctionName="JCModel.Store.update_data" />
+  </EntityContainerMapping>
+</Mapping>

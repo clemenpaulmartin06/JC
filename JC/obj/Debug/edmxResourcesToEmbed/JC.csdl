@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ledger">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="earned" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="used" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dDate" Type="DateTime" Precision="3" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="splash">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="dDate" Type="DateTime" Precision="3" />
+    <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="JCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ledgers" EntityType="Self.ledger" />
+    <EntitySet Name="splashes" EntityType="Self.splash" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <FunctionImport Name="delete_data_ledger">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="insert_ledger">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="earned" Mode="In" Type="Decimal" />
+      <Parameter Name="used" Mode="In" Type="Decimal" />
+      <Parameter Name="description" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="view_ledger" ReturnType="Collection(JCModel.view_ledger_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="view_data" ReturnType="Collection(JCModel.view_data_Result)">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="update_data">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="earned" Mode="In" Type="Decimal" />
+      <Parameter Name="used" Mode="In" Type="Decimal" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="view_ledger_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="earned" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="used" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="dDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="description" Nullable="true" />
+    <Property Type="Decimal" Name="totalEarned" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="totalUsed" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="view_data_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="earned" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="used" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="dDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="description" Nullable="true" />
+    <Property Type="Decimal" Name="totalEarned" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="totalUsed" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+</Schema>
